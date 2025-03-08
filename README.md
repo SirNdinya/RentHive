@@ -64,5 +64,5 @@ For inquiries and collaboration, please reach out to the development team via Wh
 
 
 
-Thank you for your interest in the **Student Accommodation Platform**! 🎉 This Android app is currently **under development** and is not yet available for public use. Stay tuned for updates! 🚀
+Thank you for your interest in  **RentHive**! 🎉 This Android app is currently **under development** and is not yet available for public use. Stay tuned for updates! 🚀
 
