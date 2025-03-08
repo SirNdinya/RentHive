@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "670220551053",
+    "project_id": "renthive-8c77a",
+    "storage_bucket": "renthive-8c77a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:670220551053:android:535df08a99cc8e2496b3c4",
+        "android_client_info": {
+          "package_name": "com.renthive"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBl1HuusLSh-0BxfedElcQ69VC6R6QbabY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
