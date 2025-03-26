@@ -1,4 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bacg"
+    android:padding="16dp"
+    tools:context=".LoginActivity">
 
-</PreferenceScreen>
+
+    <!-- Logo TextView -->
+    <TextView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login"
+        android:textAlignment="center"
+        android:textColor="@color/primaryColor"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="150dp" />
+
+
+
+    <!-- Username -->
+
+
+    <EditText
+        android:id="@+id/usernameField"
+        android:layout_width="518dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="50dp"
+        android:autofillHints="username"
+        android:background="@drawable/round_editted"
+        android:drawableStart="@drawable/ic_person"
+        android:hint="@string/username"
+        android:inputType="text"
+        android:textAlignment="center"
+        android:textColorLink="@color/backgroundColor"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toTopOf="@id/passwordField"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logo" />
+
+    <EditText
+        android:id="@+id/passwordField"
+        android:layout_width="518dp"
+        android:layout_height="84dp"
+        android:hint="@string/password"
+        android:autofillHints="password"
+        android:inputType="textPassword"
+        android:background="@drawable/round_editted"
+        android:drawableStart="@drawable/ic_security"
+        android:textAlignment="center"
+        android:textSize="48sp"
+        app:layout_constraintTop_toBottomOf="@id/usernameField"
+        app:layout_constraintBottom_toTopOf="@id/loginButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="50dp" />
+
+
+    <!-- Loading Indicator as a Popup -->
+
+    <Button
+        android:id="@+id/loginButton"
+        android:background="@drawable/rounded_button"
+        android:layout_width="164dp"
+        android:layout_height="79dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/login"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.149"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/passwordField" />
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="164dp"
+        android:layout_height="79dp"
+        android:background="@drawable/rounded_button"
+        android:layout_marginTop="32dp"
+        android:text="@string/register"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/passwordField" />
+
+    <FrameLayout
+        android:id="@+id/loadingPopup"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- Semi-transparent background -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#80000000" />  <!-- Black with 50% transparency -->
+
+        <!-- ProgressBar centered in the middle -->
+        <ProgressBar
+            android:id="@+id/loadingIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/loading"
+            android:layout_gravity="center" />  <!-- Center the ProgressBar -->
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

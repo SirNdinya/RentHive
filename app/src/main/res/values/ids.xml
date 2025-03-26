@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="loginButton" type="id" />
+    <item name="roleRadioGroup" type="id" />
+    <item name="roleSelectionLayout" type="id" />
+    <item name="tenantFields" type="id" />
+    <item name="registrationFormLayout" type="id" />
+    <item name="propertyOwnerFields" type="id" />
+    <item name="loadingIndicator" type="id" />
+    <item name="phoneNumberField" type="id" />
+    <item name="nameField" type="id" />
+    <item name="confirmPasswordField" type="id" />
+    <item name="roleSelectionLabel" type="id" />
+    <item name="tenantRadioButton" type="id" />
+    <item name="propertyOwnerRadioButton" type="id" />
+    <item name="universityField" type="id" />
+    <item name="universityAreaField" type="id" />
+    <item name="usernameField" type="id" />
+    <item name="registerButton" type="id" />
+    <item name="passwordField" type="id" />
+    <item name="emailField" type="id" />
+    <item name="uploadProofButton" type="id" />
+    <item name="uploadIdButton" type="id" />
+    <item name="submitButton" type="id" />
+    <item name="tvListingPrice" type="id" />
+    <item name="tvListingDetails" type="id" />
+    <item name="imgListing" type="id" />
+</resources>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Search Bar for Location -->
+    <EditText
+        android:id="@+id/edtSearchLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search by Location"
+        android:inputType="text" />
+
+    <!-- Button for Properties -->
+    <Button
+        android:id="@+id/btnViewProperties"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Properties"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Button for Listings -->
+    <Button
+        android:id="@+id/btnViewListings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Listings"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Search Button -->
+    <Button
+        android:id="@+id/btnSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:layout_marginTop="16dp"/>
+
+    <!-- RecyclerView to display Property Listings -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvListings"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="8dp" />
+
+</LinearLayout>

@@ -1,7 +1,10 @@
 package com.renthive.core;
 
+import android.util.Log;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.google.firebase.storage.FirebaseStorage;
 
 public class FirebaseHelper {
@@ -27,4 +30,7 @@ public class FirebaseHelper {
     public FirebaseAuth getFirebaseAuth() { return firebaseAuth; }
     public FirebaseFirestore getFirestore() { return firestore; }
     public FirebaseStorage getStorage() { return storage; }
+
+
+
 }

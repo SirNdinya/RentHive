@@ -1,0 +1,43 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imgOwnerProfile"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_person" />
+
+    <TextView
+        android:id="@+id/tvOwnerName"
+        android:text="Owner Name"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvOwnerEmail"
+        android:text="Owner Email"
+        android:textSize="16sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnAddProperty"
+        android:text="Add Property"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btnManageListings"
+        android:text="Manage Listings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <RecyclerView
+        android:id="@+id/recyclerViewProperties"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

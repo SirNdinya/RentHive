@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">RentHive</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="username">Username</string>
+    <string name="upload_id_document">Upload ID Document</string>
+    <string name="submit_documents">Submit Documents</string>
+    <string name="upload_proof_of_ownership">Upload Proof of Ownership</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="university">University</string>
+    <string name="full_name">Full Name</string>
+    <string name="property_owner">Property Owner</string>
+    <string name="tenant">Tenant</string>
+    <string name="choose_your_role">Choose Your Role</string>
+    <string name="university_area">University Area</string>
+    <string name="next">Next</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="loading">Loading</string>
 </resources>
