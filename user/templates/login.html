@@ -1,21 +1,26 @@
 {% extends 'base_generic.html' %}
 {% load static %}
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-{% block content %}
 
+<!-- Load the stylesheet -->
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+{% block content %}
   <div class="container">
-    <!-- Message Display - Uses your existing CSS classes -->
+    <!-- Message Display - Uses existing CSS classes -->
     <div class="form-container">
       <h2 class="form-heading">Login to Your Account</h2>
-    {% if messages %}
-    <div class="messages">
-        {% for message in messages %}
+
+      {% if messages %}
+        <div class="messages">
+          {% for message in messages %}
             <div class="message {% if message.tags == 'error' %}error{% else %}success{% endif %}">
-                {{ message }}
+              {{ message }}
             </div>
-        {% endfor %}
-    </div>
-    {% endif %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <!-- Login Form -->
       <form method="POST" class="form">
         {% csrf_token %}
 
@@ -35,7 +40,11 @@
         <!-- Password Field with Error Display -->
         <div class="form-group">
           <label for="id_password">Password</label>
-          {{ form.password }}
+          <div class="password-container">
+            {{ form.password }}
+            <!-- Eye icon to toggle visibility -->
+            <span class="password-toggle" id="togglePassword">👁️</span>
+          </div>
           {% if form.password.errors %}
             <div class="message error">
               {% for error in form.password.errors %}
@@ -45,10 +54,13 @@
           {% endif %}
         </div>
 
-        <div class=" button-container">
-            <button type="submit" class="btn-submit">Login</button>
+        <!-- Submit Button -->
+        <div class="button-container">
+          <button type="submit" class="btn-submit">Login</button>
         </div>
       </form>
+
+      <!-- Alternative Option for Registration -->
       <div class="alternative-option">
         <p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
       </div>
@@ -61,5 +73,21 @@
 {% endblock %}
 
 {% block scripts %}
-    <script src="{% static 'js/user_scripts.js' %}"></script>
+  <script>
+    // Get references to the password input and the toggle icon
+    const togglePassword = document.getElementById("togglePassword");
+    const passwordInput = document.getElementById("id_password");
+
+    // Add click event listener to toggle visibility
+    togglePassword.addEventListener("click", function() {
+        // Toggle password visibility
+        const type = passwordInput.type === "password" ? "text" : "password";
+        passwordInput.type = type;
+
+        // Toggle the icon (optional)
+        this.textContent = type === "password" ? "👁️" : "🙈"; // Change to a closed eye icon
+    });
+  </script>
+
+  <script src="{% static 'js/user_scripts.js' %}"></script>
 {% endblock %}

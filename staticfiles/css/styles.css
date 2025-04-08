@@ -19,7 +19,7 @@ body {
 }
 
 /* Form Container */
-.form-container {
+form-container {
   background: white; /* Sets the background color to white */
   padding: 40px; /* Adds padding inside the form */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow around the form */
