@@ -1,0 +1,11 @@
+{% extends 'base_property.html' %}
+
+{% block content %}
+  <h1>Approve or Reject Property: {{ property.name }}</h1>
+
+  <form method="post">
+    {% csrf_token %}
+    <button name="action" value="approve">Approve</button>
+    <button name="action" value="reject">Reject</button>
+  </form>
+{% endblock %}

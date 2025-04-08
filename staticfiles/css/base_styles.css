@@ -1,0 +1,43 @@
+/* Apply background image to the entire page */
+html, body {
+    height: 100%;
+    overflow: hidden; /* Prevents page scrolling */
+    display: flex;
+    flex-direction: column;
+
+    /* Background image settings */
+    background: url("{% static 'images/background.jpg' %}") no-repeat center center fixed;
+    background-size: cover; /* Ensures the image covers the whole screen */
+}
+
+/* Ensure main content takes available space */
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Make the form container scrollable */
+.form-container {
+    background: rgba(255, 255, 255, 0.9); /* Slight transparency for better readability */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    width: 100%;
+    box-sizing: border-box;
+
+    /* Force the form container to fit within the viewport */
+    max-height: 80vh;
+    overflow-y: auto; /* Enables scrolling within the form only */
+}
+
+/* Ensure mobile responsiveness */
+@media (max-width: 768px) {
+    .form-container {
+        width: 90%;
+        max-height: 80vh;
+    }
+}
