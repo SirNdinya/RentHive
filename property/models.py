@@ -13,7 +13,7 @@ class Property(models.Model):
     # Field for the name of the property (e.g., apartment name, building name, etc.)
     name = models.CharField(max_length=200)
 
-    # Field for the location of the property (e.g., city, neighborhood)
+
     location = models.CharField(max_length=300)
     area = models.CharField(max_length=300, default='')
 
@@ -36,5 +36,9 @@ class Property(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
 
     # String representation of the Property object
+    class Meta:
+        verbose_name = 'Property'
+        verbose_name_plural = 'Properties'
+
     def __str__(self):
         return self.name

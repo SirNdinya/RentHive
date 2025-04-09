@@ -33,7 +33,7 @@ class PropertyAdmin(admin.ModelAdmin):
         updated_count = queryset.update(status='approved')
         self.message_user(
             request,
-            f'{updated_count} property(ies) were successfully marked as approved.',
+            f'{updated_count} property(ies) were approved.',
             level='success'
         )
 
@@ -41,8 +41,9 @@ class PropertyAdmin(admin.ModelAdmin):
         updated_count = queryset.update(status='rejected')
         self.message_user(
             request,
-            f'{updated_count} property(ies) were successfully marked as rejected.',
+            f'{updated_count} property(ies) were successfully  rejected.',
             level='error'
         )
     approve_property.short_description = "Approve selected properties"
     reject_property.short_description = "Reject selected properties"
+

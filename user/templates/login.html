@@ -64,7 +64,12 @@
       <div class="alternative-option">
         <p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
       </div>
+        <!-- Forgot Password Link -->
+        <div class="alternative-option">
+          <p><a href="{% url 'password_reset' %}">Forgot your password?</a></p>
+        </div>
     </div>
+
   </div>
 {% endblock %}
 

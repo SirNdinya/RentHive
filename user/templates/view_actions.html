@@ -1,0 +1,36 @@
+<!-- templates/admin/view_actions.html -->
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<h1>{{ title }}</h1>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Action</th>
+            <th>Object ID</th>
+            <th>Time</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for action in actions %}
+        <tr>
+            <td>{{ action.user.username }}</td>
+            <td>{{ action.get_action_flag_display }}</td>
+            <td>{{ action.object_id }}</td>
+            <td>{{ action.action_time }}</td>
+            <td>
+                {% if action.change_message %}
+                    {{ action.change_message }}
+                {% else %}
+                    No details
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'admin:clear_actions' %}" class="button">Clear All Actions</a>
+{% endblock %}

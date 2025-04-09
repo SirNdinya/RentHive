@@ -65,6 +65,38 @@ class PropertyOwnerProfileAdmin(admin.ModelAdmin):
     raw_id_fields = ('user',)
 
 
-# Register CustomUser and University models in the Django admin panel
+from django.contrib import admin
+from django.contrib.admin.models import LogEntry
+from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.urls import path
+
+class LogEntryAdmin(admin.ModelAdmin):
+    list_display = ['user', 'content_type', 'object_id', 'action_time', 'action_flag']
+
+    def get_urls(self):
+        urls = super().get_urls()
+        custom_urls = [
+            path('view_actions/', self.view_actions, name='view_actions'),
+            path('clear_actions/', self.clear_actions, name='clear_actions'),
+        ]
+        return custom_urls + urls
+
+    def view_actions(self, request):
+        # Get the actions history
+        actions = LogEntry.objects.all().order_by('-action_time')
+        context = {
+            'actions': actions,
+            'title': 'Actions History'
+        }
+        return render(request, 'view_actions.html', context)
+
+    def clear_actions(self, request):
+        # Clear all the logs
+        LogEntry.objects.all().delete()
+        self.message_user(request, "All action logs have been cleared.")
+        return HttpResponseRedirect('../')
+
 admin.site.register(CustomUser, CustomUserAdmin)
 admin.site.register(University)
+admin.site.register(LogEntry, LogEntryAdmin)

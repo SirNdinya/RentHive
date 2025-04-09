@@ -6,7 +6,6 @@ class Listing(models.Model):
     STATUS_CHOICES = [
         ('Available', 'Available'),
         ('Rented', 'Rented'),
-        ('Pending', 'Pending'),
     ]
 
     listing_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)

@@ -20,6 +20,9 @@ from django.utils.encoding import force_bytes  # Convert user ID to bytes
 from django.contrib.auth.tokens import default_token_generator  # Generate account activation token
 from django.urls import reverse  # For generating activation URL
 from django.conf import settings  # Access project settings
+from django.contrib.auth.views import PasswordResetView
+from django.urls import reverse_lazy
+
 
 # Get the currently active user model (default or custom)
 User = get_user_model()
@@ -165,3 +168,26 @@ from django.shortcuts import redirect
 def custom_logout_view(request):
     logout(request)
     return redirect('login')  # redirect to login page after logout
+
+
+class CustomPasswordResetView(PasswordResetView):
+    template_name = 'password_reset.html'  # Specify the template for the password reset form
+    html_email_template_name = 'password_reset_email.html'  # Specify the custom email template
+    success_url = reverse_lazy('password_reset_done')  # Redirect to 'password_reset_done' after successful reset
+
+    def form_valid(self, form):
+        """
+        Override form_valid to add custom behavior (check if email exists).
+        """
+        # The form is valid, but before proceeding, let's check if the email exists in the database
+        email = form.cleaned_data["email"]
+        try:
+            # Check if the email exists in the database
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            # If the email does not exist, we can handle the error here
+            form.add_error("email", "This email address is not registered")
+            return self.form_invalid(form)
+
+        # If email exists, continue the default behavior (sending the reset email)
+        return super().form_valid(form)

@@ -1,7 +1,7 @@
 /* Global Styles */
 body {
   font-family: 'Arial', sans-serif; /* Sets the font of the body to Arial, with sans-serif as a fallback */
-  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("../images/background.jpg") no-repeat center center fixed;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/background.jpg") no-repeat center center fixed;
   background-size: cover; /* Ensures the image covers the whole screen */
   margin: 0; /* Removes default margin from the body */
   padding: 0; /* Removes default padding from the body */
