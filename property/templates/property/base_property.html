@@ -1,0 +1,25 @@
+{% load static %}  <!-- Load the static files tag -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Property Management{% endblock %}</title>
+
+    <!-- Link to CSS file -->
+    <link rel="stylesheet" href="{% static 'css/base_styles.css' %}">
+
+    <!-- Add additional CSS here if needed -->
+    {% block extra_css %}
+        <link rel="stylesheet" href="{% static 'property/css/property_styles.css' %}">
+    {% endblock %}
+      <a href="{% url 'logout' %}" class="logout-button">Logout</a>
+
+</head>
+<body>
+
+    {% block content %}{% endblock %}
+
+</body>
+</html>

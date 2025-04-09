@@ -12,7 +12,7 @@ from property.models import Property  # assuming the property model is in the pr
 @login_required
 def listing_list(request):
     listings = Listing.objects.select_related('property').all()
-    return render(request, 'listing_list.html', {'listings': listings})
+    return render(request, 'listings/listing_list.html', {'listings': listings})
 
 # Listing Create View (to create a new listing)
 @login_required
@@ -35,7 +35,7 @@ def listing_create(request):
     else:
         form = ListingForm()
 
-    return render(request, 'listing_form.html', {'form': form, 'action': 'Add'})
+    return render(request, 'listings/listing_form.html', {'form': form, 'action': 'Add'})
 
 
 # Listing Update View (to update an existing listing)
@@ -55,7 +55,7 @@ def listing_update(request, pk):
     else:
         form = ListingForm(instance=listing)
 
-    return render(request, 'listing_form.html', {'form': form, 'action': 'Update'})
+    return render(request, 'listings/listing_form.html', {'form': form, 'action': 'Update'})
 
 
 # Listing Delete View (to delete an existing listing)
@@ -70,7 +70,7 @@ def listing_delete(request, pk):
     if request.method == 'POST':
         listing.delete()
         return redirect('listing_list')
-    return render(request, 'listing_confirm_delete.html', {'listing': listing})
+    return render(request, 'listings/listing_confirm_delete.html', {'listing': listing})
 
 
 # Tenant Listing View (to view listings for tenants based on university)
@@ -92,7 +92,7 @@ def tenant_listing_view(request):
             Q(property__location__icontains=query)
         )
 
-    return render(request, 'tenants_listings.html', {'listings': listings, 'query': query})
+    return render(request, 'listings/tenants_listings.html', {'listings': listings, 'query': query})
 
 
 from django.shortcuts import get_object_or_404
@@ -101,7 +101,7 @@ from django.shortcuts import get_object_or_404
 def property_listings(request, property_id):
     property_obj = get_object_or_404(Property, id=property_id)
     listings = Listing.objects.select_related('property').filter(property=property_obj)
-    return render(request, 'listing_list.html', {
+    return render(request, 'listings/listing_list.html', {
         'listings': listings,
         'property': property_obj
     })

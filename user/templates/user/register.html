@@ -1,0 +1,139 @@
+{% extends 'user/base_generic.html' %}
+{% load static %}
+
+<!-- Link to the CSS file -->
+<link rel="stylesheet" href="{% static 'user/css/styles.css' %}">
+
+{% block content %}
+  <div class="container">
+    <div class="form-container">
+      <h2 class="form-heading">Create Your Account</h2>
+
+      {% if messages %}
+        <div class="messages">
+          {% for message in messages %}
+            <div class="message {% if message.tags == 'error' %}error{% else %}success{% endif %}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+
+        {% if redirect_to_login %}
+          <script>
+            // Redirect after 3 seconds
+            setTimeout(function() {
+              window.location.href = "{% url 'login' %}";
+            }, 3000);
+          </script>
+        {% endif %}
+      {% endif %}
+
+      <form method="post" class="registration-form">
+        {% csrf_token %}  <!-- CSRF token for security -->
+
+        <!-- Username Field -->
+        <div class="form-group">
+          <label for="id_username">Username</label>
+          {{ form.username }}  <!-- Django form field rendering -->
+        </div>
+
+        <!-- Email Field -->
+        <div class="form-group">
+          <label for="id_email">Email Address</label>
+          {{ form.email }}
+        </div>
+
+        <!-- Password Fields with Toggle Visibility -->
+        <div class="form-group">
+          <label for="id_password1">Password</label>
+          <div class="password-container">
+            {{ form.password1 }}
+            <!-- Eye icon to toggle visibility -->
+            <span class="password-toggle" id="togglePassword">
+              👁️
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="id_password2">Confirm Password</label>
+          <div class="password-container">
+            {{ form.password2 }}
+            <!-- Eye icon to toggle visibility -->
+            <span class="password-toggle" id="togglePassword2">
+              👁️
+            </span>
+          </div>
+        </div>
+
+        <!-- Role Selection Dropdown -->
+        <div class="form-group">
+          <label for="id_role">Role:</label>
+          <select name="role" id="roleSelect" class="form-control">
+            <option value="">--Select Role--</option>
+            <option value="TENANT" {% if form.role.value == 'TENANT' %}selected{% endif %}>Tenant</option>
+            <option value="PROPERTY_OWNER" {% if form.role.value == 'PROPERTY_OWNER' %}selected{% endif %}>Property Owner</option>
+          </select>
+        </div>
+
+        <!-- Tenant-Specific Fields (Hidden by default) -->
+        <div id="tenant-fields" class="form-group" style="display: none;">
+          <label for="id_university">University:</label>
+          <input type="text" name="university" id="id_university"
+                 value="{{ form.university.value|default:'' }}" class="form-control" autocomplete="off">
+          <div id="suggestions" class="suggestions"></div>
+        </div>
+
+        <!-- Property Owner-Specific Fields (Hidden by default) -->
+        <div id="property-owner-fields" class="form-group" style="display: none;">
+          <label for="id_phone_number">Phone Number:</label>
+          <input type="text" name="phone_number" id="id_phone_number"
+                 value="{{ form.phone_number.value|default:'' }}" class="form-control">
+        </div>
+
+        <!-- Submit Button -->
+        <div class="button-container">
+          <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+      </form>
+
+      <!-- Login Link for Existing Users -->
+      <div class="alternative-option">
+        <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block styles %}
+  <!-- Additional page-specific styles -->
+  <link rel="stylesheet" type="text/css" href="{% static 'user/css/styles.css' %}">
+{% endblock %}
+
+{% block scripts %}
+  <!-- Script to Toggle Password Visibility -->
+  <script>
+    // Get references to the password inputs and toggle icons
+    const togglePassword1 = document.getElementById("togglePassword");
+    const passwordInput1 = document.getElementById("id_password1");
+
+    const togglePassword2 = document.getElementById("togglePassword2");
+    const passwordInput2 = document.getElementById("id_password2");
+
+    // Add click event listener to toggle visibility for both password fields
+    togglePassword1.addEventListener("click", function() {
+      const type = passwordInput1.type === "password" ? "text" : "password";
+      passwordInput1.type = type;
+      this.textContent = type === "password" ? "👁️" : "🙈"; // Toggle eye icon
+    });
+
+    togglePassword2.addEventListener("click", function() {
+      const type = passwordInput2.type === "password" ? "text" : "password";
+      passwordInput2.type = type;
+      this.textContent = type === "password" ? "👁️" : "🙈"; // Toggle eye icon
+    });
+  </script>
+
+  <!-- Custom JS file -->
+  <script src="{% static 'user/js/user_scripts.js' %}"></script>
+{% endblock %}

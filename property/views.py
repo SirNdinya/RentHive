@@ -9,7 +9,7 @@ from django.contrib import messages
 @login_required
 def property_list(request):
     properties = Property.objects.all()
-    return render(request, 'property_list.html', {'properties': properties})
+    return render(request, 'property/property_list.html', {'properties': properties})
 
 
 @login_required
@@ -29,7 +29,7 @@ def property_create(request):
     else:
         form = PropertyForm()
 
-    return render(request, 'property_form.html', {'form': form})
+    return render(request, 'property/property_form.html', {'form': form})
 
 
 # View to approve or reject a property (only for admin users)
@@ -60,4 +60,4 @@ def property_approval(request, property_id):
         messages.success(request, f"Property {action}d successfully!")
         return redirect('property_list')
 
-    return render(request, 'property_approval.html', {'property': property})
+    return render(request, 'property/property_approval.html', {'property': property})

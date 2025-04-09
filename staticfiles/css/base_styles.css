@@ -1,38 +1,143 @@
-/* Apply background image to the entire page */
-html, body {
-    height: 100%;
-    overflow: hidden; /* Prevents page scrolling */
-    display: flex;
-    flex-direction: column;
-
-    /* Background image settings */
-    background: url("{% static 'images/background.jpg' %}") no-repeat center center fixed;
-    background-size: cover; /* Ensures the image covers the whole screen */
+/* Global Styles */
+body {
+  font-family: 'Arial', sans-serif; /* Sets the font of the body to Arial, with sans-serif as a fallback */
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../images/background.jpg") no-repeat center center fixed;
+  background-size: cover; /* Ensures the image covers the whole screen */
+  margin: 0; /* Removes default margin from the body */
+  padding: 0; /* Removes default padding from the body */
+  overflow-x: hidden;
+  display: flex; /* Enables flexbox layout */
+  flex-direction: column; /* Stacks child elements vertically */
+  min-height: 100vh; /* Ensures the body takes the full viewport height without overflowing */
 }
 
-/* Ensure main content takes available space */
 main {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    padding-top: 70px; /* Add space at the top to prevent content from being hidden under the header */
 }
 
-/* Make the form container scrollable */
-.form-container {
-    background: rgba(255, 255, 255, 0.9); /* Slight transparency for better readability */
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 600px;
+h1 {
+  text-align: center;
+  color: #ffffff;
+  margin-top: 20px;
+  font-size: 3rem;
+}
+
+h2{
+    text-align: center;
+
+}
+
+/* Header */
+header {
+  background-color: #192845;
+  color: white;
+  padding: 10px 0;
+  position: relative;
+  z-index: 1000;
+}
+
+/* Container */
+header .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Three-zone layout */
+header nav {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; /* left, center, right */
+
+}
+
+/* Left: logo */
+header .logo {
+  color: white;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-self: start;
+  margin-left: 20px; /* Adjust this value to increase the spacing */
+}
+
+
+header .logo i {
+  font-size: 20px;
+}
+
+/* Center: auth buttons */
+header .auth-buttons {
+  display: flex;
+  gap: 15px;
+  justify-self: center;
+}
+
+/* Base button */
+header .auth-buttons .btn {
+  padding: 8px 16px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  display: inline-block;
+}
+
+/* Outline button */
+header .auth-buttons .btn-outline {
+  border: 1px solid white;
+  color: white;
+  background-color: transparent;
+}
+
+header .auth-buttons .btn-outline:hover {
+  background-color: white;
+  color: #192845;
+}
+
+/* Primary button */
+header .auth-buttons .btn-primary {
+  background-color: #00bcd4;
+  border: 1px solid #00bcd4;
+  color: white;
+}
+
+header .auth-buttons .btn-primary:hover {
+  background-color: #0194a8;
+  border-color: #0194a8;
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  header nav {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    row-gap: 10px;
+  }
+
+  header .auth-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  header .auth-buttons .btn {
     width: 100%;
-    box-sizing: border-box;
+    text-align: center;
+  }
 
-    /* Force the form container to fit within the viewport */
-    max-height: 80vh;
-    overflow-y: auto; /* Enables scrolling within the form only */
-}
+
+
+
+
+
 
 /* Ensure mobile responsiveness */
 @media (max-width: 768px) {
@@ -40,4 +145,18 @@ main {
         width: 90%;
         max-height: 80vh;
     }
-}
+
+    nav {
+        flex-direction: column; /* Stack on small screens */
+        gap: 10px;
+    }
+
+    .auth-buttons {
+        margin-top: 10px;
+        flex-direction: column;
+    }
+
+    .auth-buttons .btn {
+        margin: 5px 0;
+    }
+}}

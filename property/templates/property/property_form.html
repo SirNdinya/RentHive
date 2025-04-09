@@ -1,0 +1,73 @@
+{% extends 'property/base_property.html' %}
+
+{% block content %}
+
+
+  <!-- Display messages for success or errors -->
+  {% if messages %}
+    <div class="messages">
+      {% for message in messages %}
+        <p class="alert alert-info">{{ message }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <!-- Property Form -->
+  {% load widget_tweaks %}
+
+<form method="POST" enctype="multipart/form-data">
+<h1>Create a Property</h1>
+  {% csrf_token %}
+
+  <!-- Render the form fields with added classes and set help_text as placeholder -->
+  <div class="form-group">
+    <label for="id_name">Property Name:</label>
+    {{ form.name|add_class:"form-control" }}
+    <script>
+      document.querySelector('#id_name').setAttribute('placeholder', '{{ form.name.help_text|escapejs }}');
+    </script>
+  </div>
+
+  <div class="form-group">
+    <label for="id_location">Location (University place):</label>
+    {{ form.location|add_class:"form-control" }}
+    <script>
+      document.querySelector('#id_location').setAttribute('placeholder', '{{ form.location.help_text|escapejs }}');
+    </script>
+  </div>
+
+  <div class="form-group">
+    <label for="id_area">Area:</label>
+    {{ form.area|add_class:"form-control" }}
+    <script>
+      document.querySelector('#id_area').setAttribute('placeholder', '{{ form.area.help_text|escapejs }}');
+    </script>
+  </div>
+
+  <div class="form-group">
+    <label for="id_description">Description:</label>
+    {{ form.description|add_class:"form-control" }}
+    <script>
+      document.querySelector('#id_description').setAttribute('placeholder', '{{ form.description.help_text|escapejs }}');
+    </script>
+  </div>
+
+  <div class="form-group">
+    <label for="id_image">Image:</label>
+    {{ form.image|add_class:"form-control" }}
+    <script>
+      document.querySelector('#id_image').setAttribute('placeholder', '{{ form.image.help_text|escapejs }}');
+    </script>
+  </div>
+
+   <div class="form-group">
+    <label for="id_document">Document (PDF):</label>
+    {{ form.document|add_class:"form-control" }}
+    <small class="form-text text-muted">{{ form.document.help_text }}</small> <!-- Display help text -->
+  </div>
+
+  <!-- Submit button -->
+  <button type="submit">Submit</button>
+</form>
+
+{% endblock %}

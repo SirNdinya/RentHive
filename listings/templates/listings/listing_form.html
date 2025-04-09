@@ -1,0 +1,10 @@
+{% extends 'listings/base_listings.html' %}
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+<h2>Post a Vacancy</h2>
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">{{ action }}</button>
+    <a href="{% url 'listing_list' %}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

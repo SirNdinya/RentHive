@@ -72,7 +72,7 @@ def login_view(request):
 
     # For GET requests or failed POST attempts, display the login form
     form = AuthenticationForm()
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'user/login.html', {'form': form})
 
 
 def send_verification_email(user, request):
@@ -86,7 +86,7 @@ def send_verification_email(user, request):
     )
 
     subject = "Activate Your Account"
-    html_content = render_to_string("email_verification.html", {"user": user, "activation_url": activation_url})
+    html_content = render_to_string("user/email_verification.html", {"user": user, "activation_url": activation_url})
     text_content = strip_tags(html_content)  # Plain text fallback for email clients that don't support HTML
 
     email = EmailMultiAlternatives(subject, text_content, settings.DEFAULT_FROM_EMAIL, [user.email])
@@ -121,7 +121,7 @@ def register_view(request):
                     # Send verification email to user
                     send_verification_email(user, request)
                     messages.success(request, "Check your email to activate your account.")
-                    return render(request, "register.html", {"form": RegistrationForm(), "redirect_to_login": True})
+                    return render(request, "user/register.html", {"form": RegistrationForm(), "redirect_to_login": True})
             except Exception:
                 messages.error(request, "Registration failed. Please try again.")
         else:
@@ -131,7 +131,7 @@ def register_view(request):
     else:
         form = RegistrationForm()
 
-    return render(request, "register.html", {"form": form})
+    return render(request, "user/register.html", {"form": form})
 
 def activate_view(request, uidb64, token):
     """
@@ -170,10 +170,18 @@ def custom_logout_view(request):
     return redirect('login')  # redirect to login page after logout
 
 
+from django.contrib.auth.views import PasswordResetView
+from django.urls import reverse_lazy
+from django.contrib.auth.forms import PasswordResetForm
+from django.template.loader import render_to_string
+from django.core.mail import send_mail
+from django.utils.translation import gettext_lazy as _
+
 class CustomPasswordResetView(PasswordResetView):
-    template_name = 'password_reset.html'  # Specify the template for the password reset form
-    html_email_template_name = 'password_reset_email.html'  # Specify the custom email template
+    template_name = 'user/password_reset.html'  # Specify the template for the password reset form
+    html_email_template_name = 'user/password_reset_email.html'  # Specify the custom email template
     success_url = reverse_lazy('password_reset_done')  # Redirect to 'password_reset_done' after successful reset
+    subject_template_name = 'user/password_reset_subject'  # Add custom subject template here
 
     def form_valid(self, form):
         """
